@@ -12,5 +12,24 @@
         {{HashForm.as_p}}
         <input type="submit" name="submit" value="Hash">
     </form>
+    <h1 id="quickhash"></h1>
+
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $('#id_text').keyup(function(){
+        var text = $(this).val();
+        $.ajax({
+            url: '/quickhash',
+            data: {
+                'text': text
+            },
+            dataType: 'json',
+            success: function(data){
+                $('#quickhash').text(data['hash']);
+            }
+        });
+    });
+</script>
 </html>
